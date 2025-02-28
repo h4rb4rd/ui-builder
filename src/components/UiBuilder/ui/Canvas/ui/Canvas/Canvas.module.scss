@@ -1,0 +1,22 @@
+.canvas {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 920px;
+	background-color: #202020;
+	padding: 10px;
+}
+
+.spacer {
+	background: #fff68a;
+	width: 100%;
+	opacity: 0.25;
+	height: 100px;
+}
+
+.elements {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+}

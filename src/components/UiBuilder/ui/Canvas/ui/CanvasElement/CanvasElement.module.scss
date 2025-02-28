@@ -1,0 +1,76 @@
+.container {
+	position: relative;
+}
+
+.element {
+	pointer-events: none;
+}
+
+.top {
+	position: absolute;
+	top: 0;
+	height: 50%;
+	width: 100%;
+}
+
+.bottom {
+	position: absolute;
+	bottom: 0;
+	height: 50%;
+	width: 100%;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	background-color: rgba(0 0 0 / 0.2);
+	padding: 0 10px;
+	z-index: 10;
+	cursor: grab;
+}
+
+.text {
+	margin-left: auto;
+}
+
+.btn {
+	margin-left: auto;
+	border-radius: 3px;
+	padding: 5px 10px;
+	color: #292929;
+	background-color: #696969;
+	width: max-content;
+	align-self: center;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #fff68a;
+	}
+}
+
+.isMouseOver {
+	.element {
+		opacity: 30%;
+	}
+}
+
+.topDrop {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 7px;
+	background-color: #fff68a;
+}
+
+.bottomDrop {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 7px;
+	background-color: #fff68a;
+}

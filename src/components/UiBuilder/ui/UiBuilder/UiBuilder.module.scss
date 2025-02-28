@@ -1,0 +1,10 @@
+.builder {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
+	width: 100%;
+	overflow-y: auto;
+	padding: 50px;
+	gap: 50px;
+}
