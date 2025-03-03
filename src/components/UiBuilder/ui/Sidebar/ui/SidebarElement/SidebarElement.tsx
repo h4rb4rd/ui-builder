@@ -1,37 +1,18 @@
-import { useDraggable } from '@dnd-kit/core'
-import { TElement } from '../../../../model/types'
-
 import { classNames } from '../../../../model/utils'
 
 import cls from './SidebarElement.module.scss'
 
 interface SidebarElementProps {
-	element: TElement
+	label: string
+	overlay?: boolean
 }
 
 export const SidebarElement = (props: SidebarElementProps) => {
-	const { element } = props
-
-	const draggable = useDraggable({
-		id: `sidebar-element-${element.type}`,
-		data: {
-			type: element.type,
-			isSidebarElement: true,
-		},
-	})
+	const { label, overlay } = props
 
 	const mods = {
-		[cls.isDragging]: draggable.isDragging,
+		[cls.overlay]: overlay,
 	}
 
-	return (
-		<div
-			ref={draggable.setNodeRef}
-			className={classNames(cls.element, [], mods)}
-			{...draggable.listeners}
-			{...draggable.attributes}
-		>
-			{element.sidebarComponent}
-		</div>
-	)
+	return <div className={classNames(cls.element, [], mods)}>{label}</div>
 }

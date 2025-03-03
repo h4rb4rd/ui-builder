@@ -15,11 +15,11 @@ import { TCanvasElementInstance, TElements } from '../../model/types'
 import cls from './UiBuilder.module.scss'
 
 interface UiBuilderProps {
-	elements: TElements
+	elementsMap: TElements
 }
 
 export const UiBuilder = (props: UiBuilderProps) => {
-	const { elements } = props
+	const { elementsMap } = props
 
 	const mouseSensor = useSensor(MouseSensor, {
 		activationConstraint: {
@@ -68,16 +68,15 @@ export const UiBuilder = (props: UiBuilderProps) => {
 			<DndContext sensors={sensors}>
 				<div className={cls.builder}>
 					<Canvas
-						elements={elements}
+						elementsMap={elementsMap}
 						canvasElements={canvasElements}
 						addCanvasElement={addCanvasElement}
 						removeCanvasElement={removeCanvasElement}
 					/>
-					<Sidebar elements={elements} />
+					<Sidebar elementsMap={elementsMap} />
 					<DragOverlayWrapper
-						elements={elements}
+						elementsMap={elementsMap}
 						canvasElements={canvasElements}
-						removeCanvasElement={removeCanvasElement}
 					/>
 				</div>
 			</DndContext>

@@ -1,3 +1,5 @@
+import { TCanvasElementInstance } from '../types'
+
 export type Mods = Record<string, boolean | string | undefined>
 
 export function classNames(
@@ -43,3 +45,13 @@ export const uuid = () => {
 	}
 	return uuid.join('')
 }
+
+export const createElementInstance = (
+	id: string,
+	type: string,
+	attributes?: Record<string, any>
+): TCanvasElementInstance => ({
+	id,
+	type,
+	attributes,
+})

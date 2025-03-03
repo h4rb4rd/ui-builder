@@ -1,18 +1,17 @@
 import { Active, DragOverlay, useDndMonitor } from '@dnd-kit/core'
 import { useState } from 'react'
 
+import { CanvasElement } from '../Canvas'
 import { SidebarElement } from '../Sidebar/ui/SidebarElement/SidebarElement'
 import { TCanvasElementInstance, TElements } from '../../model/types'
-import { CanvasElement } from '../Canvas/ui/CanvasElement/CanvasElement'
 
 interface DragOverlayWrapperProps {
-	elements: TElements
+	elementsMap: TElements
 	canvasElements: TCanvasElementInstance[]
-	removeCanvasElement: (id: string) => TCanvasElementInstance[]
 }
 
 export const DragOverlayWrapper = (props: DragOverlayWrapperProps) => {
-	const { elements, canvasElements, removeCanvasElement } = props
+	const { elementsMap, canvasElements } = props
 
 	const [draggedItem, setDraggedItem] = useState<Active | null>(null)
 
@@ -32,22 +31,17 @@ export const DragOverlayWrapper = (props: DragOverlayWrapperProps) => {
 	let node = null
 
 	if (isSidebarElement) {
-		node = <SidebarElement element={elements[type]} />
+		node = <SidebarElement label={elementsMap[type].label} overlay />
 	}
 
 	if (isCanvasElement) {
-		const element = canvasElements.find(el => el.id === id)
-		if (!element) return
+		const canvasElement = canvasElements.find(el => el.id === id)
 
-		node = (
-			<div style={{ pointerEvents: 'none' }}>
-				<CanvasElement
-					element={element}
-					elements={elements}
-					removeCanvasElement={removeCanvasElement}
-				/>
-			</div>
-		)
+		if (!canvasElement) return
+
+		const component = elementsMap[canvasElement.type].component
+
+		node = <CanvasElement overlay>{component}</CanvasElement>
 	}
 
 	return <DragOverlay>{node}</DragOverlay>

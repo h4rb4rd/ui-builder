@@ -3,14 +3,13 @@ import { JSX } from 'react'
 export type TCanvasElementInstance = {
 	id: string
 	type: string
-	extraAttributes?: Record<string, any>
+	attributes?: Record<string, any>
 }
 
 export type TElement = {
 	type: string
-	canvasComponent: JSX.Element
-	sidebarComponent: JSX.Element
-	createElementInstance: (id: string) => TCanvasElementInstance
+	label: string
+	component: JSX.Element
 }
 
 export type TElements = {
