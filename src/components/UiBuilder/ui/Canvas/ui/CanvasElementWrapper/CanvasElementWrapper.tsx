@@ -43,7 +43,7 @@ export const CanvasElementWrapper = (props: CanvasElementProps) => {
 				className={cls.btn}
 				onClick={() => removeCanvasElement(canvasElement.id)}
 			>
-				delete
+				x
 			</button>
 		</div>
 	)
