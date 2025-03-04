@@ -11,26 +11,26 @@ export const elementsMap: TElements = {
 	text: {
 		type: 'text',
 		label: 'text',
-		component: <TextElement />,
+		Component: props => <TextElement {...props} />,
 	},
 	input: {
 		type: 'input',
 		label: 'input',
-		component: <InputElement />,
+		Component: props => <InputElement {...props} />,
 	},
 	textarea: {
 		type: 'textarea',
 		label: 'textarea',
-		component: <TextareaElement />,
+		Component: props => <TextareaElement {...props} />,
 	},
 	select: {
 		type: 'select',
 		label: 'select',
-		component: <SelectElement />,
+		Component: props => <SelectElement {...props} />,
 	},
 	button: {
 		type: 'button',
 		label: 'button',
-		component: <ButtonElement />,
+		Component: props => <ButtonElement {...props} />,
 	},
 }

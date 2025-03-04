@@ -9,7 +9,7 @@ export type TCanvasElementInstance = {
 export type TElement = {
 	type: string
 	label: string
-	component: JSX.Element
+	Component: (props: any) => JSX.Element
 }
 
 export type TElements = {

@@ -7,3 +7,25 @@
 	background-color: #303030;
 	padding: 10px;
 }
+
+.attributes {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.btn {
+	border-radius: 3px;
+	padding: 5px 10px;
+	color: #292929;
+	background-color: #696969;
+	width: max-content;
+	align-self: center;
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 14px;
+
+	&:hover {
+		color: #fff68a;
+	}
+}

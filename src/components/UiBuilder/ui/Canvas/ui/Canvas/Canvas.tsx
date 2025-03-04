@@ -15,11 +15,17 @@ interface CanvasProps {
 	canvasElements: TCanvasElementInstance[]
 	addCanvasElement: (index: number, element: TCanvasElementInstance) => void
 	removeCanvasElement: (id: string) => TCanvasElementInstance[]
+	selectCanvasElement: (canvasElement: TCanvasElementInstance | null) => void
 }
 
 export const Canvas = (props: CanvasProps) => {
-	const { elementsMap, canvasElements, addCanvasElement, removeCanvasElement } =
-		props
+	const {
+		elementsMap,
+		canvasElements,
+		addCanvasElement,
+		removeCanvasElement,
+		selectCanvasElement,
+	} = props
 
 	const droppable = useDroppable({
 		id: 'canvas-drop-area',
@@ -124,6 +130,7 @@ export const Canvas = (props: CanvasProps) => {
 		<div
 			ref={droppable.setNodeRef}
 			className={classNames(cls.canvas, [], mods)}
+			onClick={() => selectCanvasElement(null)}
 		>
 			{!canvasElements.length && droppable.isOver && (
 				<div className={cls.spacer} />
@@ -136,6 +143,7 @@ export const Canvas = (props: CanvasProps) => {
 						canvasElement={el}
 						elementsMap={elementsMap}
 						removeCanvasElement={removeCanvasElement}
+						selectCanvasElement={selectCanvasElement}
 					/>
 				))}
 			</div>

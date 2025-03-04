@@ -8,10 +8,16 @@ interface CanvasElementProps {
 	canvasElement: TCanvasElementInstance
 	elementsMap: TElements
 	removeCanvasElement: (id: string) => TCanvasElementInstance[]
+	selectCanvasElement: (canvasElement: TCanvasElementInstance | null) => void
 }
 
 export const CanvasElementWrapper = (props: CanvasElementProps) => {
-	const { canvasElement, elementsMap, removeCanvasElement } = props
+	const {
+		canvasElement,
+		elementsMap,
+		removeCanvasElement,
+		selectCanvasElement,
+	} = props
 
 	const draggable = useDraggable({
 		id: canvasElement.id + '-drag-handler',
@@ -41,14 +47,18 @@ export const CanvasElementWrapper = (props: CanvasElementProps) => {
 			<p className={cls.text}>click for properties or drag to move</p>
 			<button
 				className={cls.btn}
-				onClick={() => removeCanvasElement(canvasElement.id)}
+				onClick={e => {
+					e.stopPropagation()
+					removeCanvasElement(canvasElement.id)
+				}}
 			>
 				x
 			</button>
 		</div>
 	)
 
-	const component = elementsMap[canvasElement.type].component
+	const Component = elementsMap[canvasElement.type].Component
+	const label = canvasElement?.attributes?.label
 
 	if (draggable.isDragging) {
 		return null
@@ -58,13 +68,20 @@ export const CanvasElementWrapper = (props: CanvasElementProps) => {
 		<div
 			ref={draggable.setNodeRef}
 			className={cls.container}
+			onClick={e => {
+				e.stopPropagation()
+				selectCanvasElement(canvasElement)
+			}}
 			{...draggable.listeners}
 			{...draggable.attributes}
 		>
 			{overlay}
 			{topHalf.isOver && <div className={cls.topDrop} />}
 			<div ref={topHalf.setNodeRef} className={cls.top} />
-			<CanvasElement>{component}</CanvasElement>
+			<CanvasElement>
+				<Component label={label} />
+			</CanvasElement>
+
 			<div ref={bottomHalf.setNodeRef} className={cls.bottom} />
 			{bottomHalf.isOver && <div className={cls.bottomDrop} />}
 		</div>
