@@ -36,12 +36,17 @@ export const DragOverlayWrapper = (props: DragOverlayWrapperProps) => {
 
 	if (isCanvasElement) {
 		const canvasElement = canvasElements.find(el => el.id === id)
+		const label = canvasElement?.attributes?.label
 
 		if (!canvasElement) return
 
-		const component = elementsMap[canvasElement.type].component
+		const Component = elementsMap[canvasElement.type].Component
 
-		node = <CanvasElement overlay>{component}</CanvasElement>
+		node = (
+			<CanvasElement overlay>
+				<Component label={label} />
+			</CanvasElement>
+		)
 	}
 
 	return <DragOverlay>{node}</DragOverlay>
